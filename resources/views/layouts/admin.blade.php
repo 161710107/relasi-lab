@@ -26,6 +26,9 @@
   <link rel="stylesheet" href="{{asset ('assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    {{-- tambahkan css select2 --}}
+    <link href="{{ asset('assets/dist/css/select2.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/dist/css/select2.min.css') }}" rel="stylesheet">
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -43,7 +46,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
+            <h1 class="m-0 text-dark">Sistem Rental Tools Lab</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -109,5 +112,15 @@
 <script src="{{ asset ('assets/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset ('assets/dist/js/demo.js')}}"></script>
+    {{-- tambahkan js select2 --}}
+    <script src="{{ asset('assets/dist/js/select2.min.js') }}"></script>
+    <script src="{{ asset('assets/dist/js/select2.js') }}"></script>
+    <script src="{{ asset('assets/dist/js/select2.full.js') }}"></script>
+    <script src="{{ asset('assets/dist/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
+    </script>
 </body>
 </html>

@@ -1,20 +1,12 @@
 @extends('layouts.admin')
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-	<div class="container-fluid">
-	<div class="row">
-	<div class="col-md-2">
-	<!--nav-->
-				@include('partial.nav')
-			<!--end nav-->
-	</div>
-	<div class="col-md-10">
-			<div class="panel panel-danger">
+<div class="row">
+	<div class="container">
+		<div class="col-md-12">
 			  <div class="panel-heading"><font color ="blue">DATA MEMBER</font>
-			  	<div class="panel-title pull-right"><a href="{{ route('MEMBER.create') }}">Tambah</a>
-			  	</div>
 			  </div>
+			  	<div class="panel-title pull-right"><a href="{{ route('member.create') }}">Tambah Data</a>
+			  	</div>
 			  <div class="panel-body">
 			  	<div class="table-responsive">
 				  <table class="table">
@@ -41,13 +33,13 @@
 				    	<td><p><font color="blue"><b>+{{ $data->no_hp }}</b></p></td></font>
 				    	<td><p><font color="blue"><b>{{ $data->alamat }}</b></p></td></font>
 						<td>
-							<a class="btn btn-warning" href="{{ route('MEMBER.edit',$data->id) }}">Edit</a>
+							<a class="btn btn-warning" href="{{ route('member.edit',$data->id) }}">Edit</a>
 						</td>
 						<td>
-							<a href="{{ route('MEMBER.show',$data->id) }}" class="btn btn-success">Show</a>
+							<a href="{{ route('member.show',$data->id) }}" class="btn btn-success">Show</a>
 						</td>
 						<td>
-							<form method="post" action="{{ route('MEMBER.destroy',$data->id) }}">
+							<form method="post" action="{{ route('member.destroy',$data->id) }}">
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
 								<input type="hidden" name="_method" value="DELETE">
 

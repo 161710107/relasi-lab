@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Member;
 use Illuminate\Http\Request;
 use Session;
+use App\Barang;
 class MemberController extends Controller
 {
     public function __construct()
@@ -15,7 +16,8 @@ class MemberController extends Controller
     public function index()
     {
     
-        return view('pengantin.index');
+        $p = Member::all();
+        return view('member.index', compact('p'));
     }
 
     /**
@@ -25,7 +27,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-       return view('pengantin.create');
+         $ps = Barang::all();
+       return view('member.create',compact('ps'));
     }
 
     /**
@@ -41,7 +44,8 @@ class MemberController extends Controller
             'nis' => 'required|',
             'jurusan' => 'required|',
             'no_hp' => 'required|',
-            'alamat' => 'required'
+            'alamat' => 'required',
+            'barang' => 'required'
         ]);
         $p = new Member;
         $p->nama = $request->nama;
@@ -55,7 +59,7 @@ class MemberController extends Controller
         "level"=>"success",
         "message"=>"Berhasil menyimpan <b>$p->nama</b>"
         ]);
-        return redirect()->route('MEMBER.index');
+        return redirect()->route('member.index');
 
     }
 
@@ -67,8 +71,9 @@ class MemberController extends Controller
      */
     public function show($id)
     {
+        $ps = Barang::all();
           $p = Member::findOrFail($id);
-        return view('MEMBER.show',compact('p'));
+        return view('member.show',compact('p','ps'));
     }
 
     /**
@@ -79,8 +84,12 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-         $p = Member::findOrFail($id);
-        return view('MEMBER.edit',compact('p'));
+        $p = Member::findOrFail($id);
+        $selectedo = Member::findOrFail($id);
+        $selected = $p->barang->pluck('id')->toArray();
+        $ps = Barang::all();
+        // dd($selected);
+        return view('member.edit',compact('p','selectedo','selected','ps'));
     }
 
     /**
@@ -97,7 +106,8 @@ class MemberController extends Controller
             'nis' => 'required|',
             'jurusan' => 'required|',
             'no_hp' => 'required|',
-            'alamat' => 'required'
+            'alamat' => 'required|',
+            'barang' => 'required'
         ]);
          $p = Member::findOrFail($id);
         $p->nama = $request->nama;
@@ -106,12 +116,13 @@ class MemberController extends Controller
         $p->no_hp = $request->no_hp;
         $p->alamat = $request->alamat;
         $p->save();
+         $p->barang()->sync($request->barang);
      
         Session::flash("flash_notification", [
         "level"=>"success",
         "message"=>"Berhasil menyimpan <b>$p->nama</b>"
         ]);
-        return redirect()->route('MEMBER.index');
+        return redirect()->route('member.index');
 
     }
 
@@ -129,6 +140,6 @@ class MemberController extends Controller
         "level"=>"success",
         "message"=>"Data Berhasil dihapus"
         ]);
-        return redirect()->route('MEMBER.index');
+        return redirect()->route('member.index');
     }
 }

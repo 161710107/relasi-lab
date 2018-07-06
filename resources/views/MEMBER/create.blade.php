@@ -9,7 +9,7 @@
 			  	</div>
 			  </div>
 			  <div class="panel-body">
-			  	<form action="{{ route('MEMBER.store') }}" method="post" >
+			  	<form action="{{ route('member.store') }}" method="post" >
 			  		{{ csrf_field() }}
 			  		<div class="form-group {{ $errors->has('nama') ? ' has-error' : '' }}">
 			  			<label class="control-label">Nama </label>	
@@ -33,7 +33,7 @@
 
 			  		<div class="form-group {{ $errors->has('jurusan') ? ' has-error' : '' }}">
 			  			<label class="control-label">Jurusan/Mata Pelajaran</label>	
-			  			<input type="date" name="jurusan" class="form-control"  required>
+			  			<input type="text" name="jurusan" class="form-control"  required>
 			  			@if ($errors->has('jurusan'))
                             <span class="help-block">
                                 <strong>{{ $errors->first('jurusan') }}</strong>
@@ -59,6 +59,20 @@
                             </span>
                         @endif
 			  		</div>
+			  		<div class="form-group {{ $errors->has('barang') ? ' has-error' : '' }}">
+			  			<label class="control-label">barang</label>	
+			  			<select name="barang[]" class="form-control js-example-basic-multiple" multiple="multiple">
+			  				@foreach($ps as $data)
+			  				<option value="{{ $data->id }}">{{ $data->nama_barang}}</option>
+			  				@endforeach
+			  			</select>
+			  			@if ($errors->has('barang'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('barang') }}</strong>
+                            </span>
+                        @endif
+			  		</div>
+
 			  		<div class="form-group">
 			  			<button type="submit" class="btn btn-primary">Tambah</button>
 			  		</div>

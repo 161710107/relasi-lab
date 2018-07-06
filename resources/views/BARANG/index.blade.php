@@ -1,31 +1,22 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
-<div class="container-fluid">
-	<div class="row">
-	<div class="container-fluid">
-	<div class="row">
-	<div class="col-md-2">
-	<!--nav-->
-				@include('layouts.dashboard')
-			<!--end nav-->
-	</div>
-	<div class="col-md-10">
-			<div class="panel panel-danger">
-			  <div class="panel-heading"><font color ="blue">Data Pesanan</font>
-			  	<div class="panel-title pull-right"><a href="{{ route('pesanan.create') }}">Tambah</a>
-			  	</div>
+<div class="row">
+	<div class="container">
+		<div class="col-md-12">
+			  <div class="panel-heading"><font color ="blue">DATA MEMBER</font>
 			  </div>
+			  	<div class="panel-title pull-right"><a href="{{ route('barang.create') }}">Tambah Data</a>
+			  	</div>
 			  <div class="panel-body">
 			  	<div class="table-responsive">
 				  <table class="table">
 				  	<thead>
 			  		<tr>
 			  		  <th><font color="magenta"><b>No</b></th></font>
-					  <th><font color="magenta"><b>Total Pesanan</b></th></font>
-					  <th><font color="magenta"><b>Uang Muka</b></th></font>
-					  <th><font color="magenta"><b>Sisa Bayar</b></th></font>
-					  <th><font color="magenta"><b>Tanggal Pesan</b></th></font>
-					  <th colspan="2"><font color="magenta"><b>Action</b></th></font>
+					  <th><font color="magenta"><b>nama_barang</b></th></font>
+					  <th><font color="magenta"><b>persediaan</b></th></font>
+					  <th><font color="magenta"><b>kondisi</b></th></font>
+					  <th colspan="3"><font color="magenta"><b>Action</b></th></font>
 			  		</tr>
 				  	</thead>
 				  	<tbody>
@@ -34,18 +25,17 @@
 				  		@foreach($ps as $data)
 				  	  <tr>
 				    	<td><font color="blue"><b>{{ $no++ }}</b></td></font>
-				    	<td><font color="blue"><b>{{ $data->total_pesanan }}</b></td></font>
-				    	<td><font color="blue"><b>Rp.{{ $data->uang_muka }}</b></td></font>
-				    	<td><font color="blue"><b>Rp.{{ $data->sisa_bayar }}</b></td></font>
-				    	<td><font color="blue"><b>{{ $data->tanggal_pesan }}</b></td></font>
-						<td>
-							<a class="btn btn-warning" href="{{ route('pesanan.edit',$data->id) }}">Edit</a>
+				    	<td><font color="blue"><b>{{ $data->nama_barang }}</b></td></font>
+				    	<td><p><font color="blue"><b>{{ $data->persediaan }}</b></p></td></font>
+				    	<td><p><font color="blue"><b>{{ $data->kondisi }}</b></p></td></font>
+				    	<td>
+							<a class="btn btn-warning" href="{{ route('barang.edit',$data->id) }}">Edit</a>
 						</td>
 						<td>
-							<a href="{{ route('pesanan.show',$data->id) }}" class="btn btn-success">Show</a>
+							<a href="{{ route('barang.show',$data->id) }}" class="btn btn-success">Show</a>
 						</td>
 						<td>
-							<form method="post" action="{{ route('pesanan.destroy',$data->id) }}">
+							<form method="post" action="{{ route('barang.destroy',$data->id) }}">
 								<input name="_token" type="hidden" value="{{ csrf_token() }}">
 								<input type="hidden" name="_method" value="DELETE">
 

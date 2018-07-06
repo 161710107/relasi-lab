@@ -1,37 +1,37 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 <div class="row">
 	<div class="container">
 		<div class="col-md-12">
 			<div class="panel panel-primary">
-			  <div class="panel-heading">Show Data Pengantin 
+			  <div class="panel-heading">Show Data Member
 			  	<div class="panel-title pull-right"><a href="{{ url()->previous() }}">Kembali</a>
 			  	</div>
 			  </div>
 			  <div class="panel-body">
         			<div class="form-group">
-			  			<label class="control-label">Nama Mempelai Pria</label>	
-			  			<input type="text" name="nama_mempelai_pria" class="form-control" value="{{ $p->nama_mempelai_pria }}"  readonly>
+			  			<label class="control-label">Nama Member</label>	
+			  			<input type="text" name="nama" class="form-control" value="{{ $p->nama }}"  readonly>
 			  		</div>
 
 			  		<div class="form-group">
-			  			<label class="control-label">Nama Mempelai Wanita</label>
-						<input type="text" name="nama_mempelai_wanita" class="form-control" value="{{ $p->nama_mempelai_wanita }}"  readonly>
+			  			<label class="control-label">NIS/NIK</label>
+						<input type="text" name="nis" class="form-control" value="{{ $p->nis }}"  readonly>
 			  		</div>
 			  		<div class="form-group">
-			  			<label class="control-label">Tanggal Pernikahan</label>
-						<input type="date" name="tanggal_pernikahan" class="form-control" value="{{ $p->tanggal_pernikahan }}"  readonly>
+			  			<label class="control-label">Jurusan/Mata p</label>
+						<input type="text" name="jurusan" class="form-control" value="{{ $p->jurusan }}"  readonly>
 			  		</div>
 			  		<div class="form-group">
 			  			<label class="control-label">No Telepon</label>
-						<input type="text" name="no_telepone" class="form-control" value="{{ $p->no_telepon }}"  readonly>
+						<input type="text" name="no_hp" class="form-control" value="{{ $p->no_hp}}"  readonly>
 			  		</div>
 			  		<div class="form-group">
-			  			<label class="control-label">Organizer</label>
-						<input type="text" name="id_organizer" class="form-control" value="{{ $p->Organizer->email }}"  readonly>
+			  			<label class="control-label">alamat</label>
+						<input type="text" name="alamat" class="form-control" value="{{ $p->alamat}}"  readonly>
 			  		</div>
-			  		<div class="form-group">
-                    <strong>Pesanan</strong><br>@foreach($p->Pesanan as $data){{ $data->total_pesanan }}, @endforeach
+			  			<div class="form-group" name="nama_barang">
+                    <strong>Barang</strong><br>@foreach($ps as $data){{ $data->nama_barang }}, @endforeach
 
 			  		</div>
 			  	</div>
